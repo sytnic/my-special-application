@@ -4,15 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
@@ -23,11 +21,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MySpecialApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting(name = "Android")
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
@@ -35,10 +33,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Greeting(name: String, modifier: Modifier) {
     Column {
         Text(
             text = "Hello $name!",
+            style = MaterialTheme.typography.headlineLarge
         )
         Text(
             text = "Having fun?"
@@ -53,6 +52,22 @@ fun Greeting(name: String) {
 @Composable
 fun GreetingPreview() {
     MySpecialApplicationTheme {
-        Greeting(name = "Android")
+        Greeting(
+            name = "Android",
+            modifier = Modifier
+        )
+    }
+}
+
+@Preview(
+    showBackground = true,
+)
+@Composable
+fun GreetingLearnersPreview() {
+    MySpecialApplicationTheme {
+        Greeting(
+            name = "Learners",
+            modifier = Modifier
+        )
     }
 }
