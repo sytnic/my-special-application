@@ -14,6 +14,9 @@
 .cxx
 local.properties
 
+# Following is based on
+# https://betterstack.com/community/questions/gitignore-template-for-android-studio-project/
+
 # Gradle files
 .gradle/
 build/
