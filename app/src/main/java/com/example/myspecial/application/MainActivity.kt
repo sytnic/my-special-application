@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.myspecial.application.ui.theme.MySpecialApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,17 +39,21 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier) {
     Column(
-        modifier = modifier.height(400.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        // представление займёт максимальный размер экрана
+        modifier = modifier.fillMaxSize()
+        // добавить отступы для контента
+            .padding(16.dp)
     ) {
         Text(
+            // отцентрировать заголовок
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+                .padding(16.dp)
+                .clickable {  },
             text = "Hello $name!",
             style = MaterialTheme.typography.headlineLarge
         )
         Text(
-            text = "Having fun?",
-            fontSize = 40.sp
+            text = "Having fun?"
         )
     }
 }
@@ -66,21 +68,6 @@ fun MyComposableNexusPreview() {
     MySpecialApplicationTheme {
         Greeting(
             name = "Android",
-            modifier = Modifier
-        )
-    }
-}
-
-@Preview(
-    showBackground = true,
-    device = Devices.PIXEL_4_XL,
-    name = "Pixel 4 XL"
-)
-@Composable
-fun MyComposablePixelPreview() {
-    MySpecialApplicationTheme {
-        Greeting(
-            name = "Learners",
             modifier = Modifier
         )
     }
